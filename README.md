@@ -78,7 +78,7 @@ heatmap.invalidateValuesOnly( UpdateValueCallBack )
 // Set a fillStyle to use for coloring the heatmap.
 // Using a combination of PalettedFill and LUT allows coloring each cell
 // depending on the data added.
-heatmap.setFillStyle( new PalettedFill( { lut: lutPalette )
+heatmap.setFillStyle( new PalettedFill( { LUT } )
 ```
 
 It is also possible to instead assign specific colors to each cell in the heatmap.
@@ -97,7 +97,12 @@ heatmap.setFillStyle( new IndividualPointFill() )
 ## API Links
 
 * XY cartesian chart: [ChartXY]
-* Line series: [LineSeries]
+* Intensity Grid Series: [IntensityGridSeries]
+* Paletted Fill: [PalettedFill]
+* Individual Point Fill: [IndividualPointFill]
+* Matrix: [Matrix]
+* LUT: [LUT]
+* UpdateColorCallback: [UpdateColorCallback]
 
 
 ## Support
@@ -121,6 +126,11 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/chartxy.html
-[LineSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.2.0/classes/lineseries.html
+[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
+[IntensityGridSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/intensitygridseries.html
+[PalettedFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/palettedfill.html
+[IndividualPointFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/individualpointfill.html
+[Matrix]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#matrix
+[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/lut.html
+[UpdateColorCallback]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#updatecolorcallback
 
