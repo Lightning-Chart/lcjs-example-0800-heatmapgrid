@@ -96,13 +96,13 @@ heatmap.setFillStyle( new IndividualPointFill() )
 
 ## API Links
 
-* XY cartesian chart: [ChartXY]
-* Intensity Grid Series: [IntensityGridSeries]
-* Paletted Fill: [PalettedFill]
-* Individual Point Fill: [IndividualPointFill]
-* Matrix: [Matrix]
-* LUT: [LUT]
-* UpdateColorCallback: [UpdateColorCallback]
+* [XY cartesian chart]
+* [Intensity Grid Series]
+* [Paletted Fill]
+* [Individual Point Fill]
+* [Matrix]
+* [LUT]
+* [UpdateColorCallback]
 
 
 ## Support
@@ -126,11 +126,11 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[ChartXY]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/chartxy.html
-[IntensityGridSeries]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/intensitygridseries.html
-[PalettedFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/palettedfill.html
-[IndividualPointFill]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/individualpointfill.html
-[Matrix]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#matrix
-[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/classes/lut.html
-[UpdateColorCallback]: https://www.arction.com/lightningchart-js-api-documentation/v1.3.0/globals.html#updatecolorcallback
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/chartxy.html
+[Intensity Grid Series]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/intensitygridseries.html
+[Paletted Fill]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/palettedfill.html
+[Individual Point Fill]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/individualpointfill.html
+[Matrix]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#matrix
+[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/classes/lut.html
+[UpdateColorCallback]: https://www.arction.com/lightningchart-js-api-documentation/v2.0.0/globals.html#updatecolorcallback
 

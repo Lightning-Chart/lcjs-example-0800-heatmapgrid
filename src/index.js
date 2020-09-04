@@ -9,7 +9,8 @@ const {
     lightningChart,
     PalettedFill,
     LUT,
-    ColorRGBA
+    ColorRGBA,
+    Themes
 } = lcjs
 
 /**
@@ -45,12 +46,12 @@ function WaterDropGenerator(
     ) {
         let resultValue = 0
         const iOscillatorCount = oscillators.length
-        for ( let i = 0; i < iOscillatorCount; i++ ) {
+        for (let i = 0; i < iOscillatorCount; i++) {
             const oscillator = oscillators[i]
             const distX = x - oscillator.centerX
             const distZ = z - oscillator.centerZ
-            const dist = Math.sqrt( distX * distX + distZ * distZ )
-            resultValue += oscillator.gain * oscillator.amplitude * Math.cos( dist * volatility ) * Math.exp( -dist * 3.0 )
+            const dist = Math.sqrt(distX * distX + distZ * distZ)
+            resultValue += oscillator.gain * oscillator.amplitude * Math.cos(dist * volatility) * Math.exp(-dist * 3.0)
         }
         return resultValue
     }
@@ -58,7 +59,7 @@ function WaterDropGenerator(
     const iOscCount = amplitudes.length
     const oscillators = []
 
-    for ( let iOsc = 0; iOsc < iOscCount; iOsc++ ) {
+    for (let iOsc = 0; iOsc < iOscCount; iOsc++) {
         oscillators[iOsc] = {
             amplitude: amplitudes[iOsc],
             centerX: xPositionsNormalized[iOsc],
@@ -68,23 +69,25 @@ function WaterDropGenerator(
         }
     }
 
-    const result = Array.from( Array( sizeZ ) ).map( () => Array( sizeX ) )
+    const result = Array.from(Array(sizeZ)).map(() => Array(sizeX))
     const dTotalX = 1
     const dTotalZ = 1
-    const stepX = ( dTotalX / sizeX )
-    const stepZ = ( dTotalZ / sizeZ )
+    const stepX = (dTotalX / sizeX)
+    const stepZ = (dTotalZ / sizeZ)
 
     // calculate the data
-    for ( let row = 0, z = 0; row < sizeZ; row++ , z += stepZ ) {
-        for ( let col = 0, x = 0; col < sizeX; col++ , x += stepX ) {
-            result[col][row] = CalculateWavesAtPoint( x, z ) + offsetLevel
+    for (let row = 0, z = 0; row < sizeZ; row++, z += stepZ) {
+        for (let col = 0, x = 0; col < sizeX; col++, x += stepX) {
+            result[col][row] = CalculateWavesAtPoint(x, z) + offsetLevel
         }
     }
     return result
 }
 
 // Create a XY Chart.
-const chart = lightningChart().ChartXY()
+const chart = lightningChart().ChartXY({
+    // theme: Themes.dark
+})
     .setTitle('Heatmap using IntensityGrid')
 
 // Specify the resolution used for the heatmap.
@@ -103,26 +106,26 @@ const data = WaterDropGenerator(
     25               // Volatility, wave generating density
 )
 // Create LUT and FillStyle
-const palette = new LUT( {
+const palette = new LUT({
     steps: [
-        { value: 0, color: ColorRGBA( 0, 0, 0 ) },
-        { value: 30, color: ColorRGBA( 255, 255, 0 ) },
-        { value: 45, color: ColorRGBA( 255, 204, 0 ) },
-        { value: 60, color: ColorRGBA( 255, 128, 0 ) },
-        { value: 100, color: ColorRGBA( 255, 0, 0 ) }
+        { value: 0, color: ColorRGBA(0, 0, 0) },
+        { value: 30, color: ColorRGBA(255, 255, 0) },
+        { value: 45, color: ColorRGBA(255, 204, 0) },
+        { value: 60, color: ColorRGBA(255, 128, 0) },
+        { value: 100, color: ColorRGBA(255, 0, 0) }
     ],
     interpolate: false
-} )
+})
 
 // Add a Heatmap to the Chart. By default IntensityGrid Series Type is used.
-const heatmap = chart.addHeatmapSeries( {
+const heatmap = chart.addHeatmapSeries({
     rows: resolutionX,
     columns: resolutionX,
     start: { x: 10, y: 10 },
     end: { x: 90, y: 90 },
     pixelate: false
-} )
+})
     // Add data and invalidate the Series based on added data.
-    .invalidateValuesOnly( data )
+    .invalidateValuesOnly(data)
     // Use created Paletted FillStyle for the Heatmap.
-    .setFillStyle( new PalettedFill( { lut: palette } ) )
+    .setFillStyle(new PalettedFill({ lut: palette }))
