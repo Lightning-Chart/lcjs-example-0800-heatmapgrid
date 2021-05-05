@@ -126,11 +126,11 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/chartxy.html
-[Intensity Grid Series]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/intensitygridseries.html
-[Paletted Fill]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/palettedfill.html
-[Individual Point Fill]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/individualpointfill.html
-[Matrix]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/globals.html#matrix
-[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/classes/lut.html
-[UpdateColorCallback]: https://www.arction.com/lightningchart-js-api-documentation/v2.2.0/globals.html#updatecolorcallback
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/chartxy.html
+[Intensity Grid Series]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/intensitygridseries.html
+[Paletted Fill]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/palettedfill.html
+[Individual Point Fill]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/individualpointfill.html
+[Matrix]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/globals.html#matrix
+[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/classes/lut.html
+[UpdateColorCallback]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.0/globals.html#updatecolorcallback
 
