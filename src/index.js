@@ -2,62 +2,70 @@
  * LightningChartJS example that showcases a simple XY line series.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require("@arction/lcjs");
 
 // Extract required parts from LightningChartJS.
-const {
-    lightningChart,
-    PalettedFill,
-    LUT,
-    ColorRGBA,
-    Themes
-} = lcjs
+const { lightningChart, PalettedFill, LUT, ColorRGBA, emptyLine, Themes } =
+  lcjs;
 
-const {
-    createWaterDropDataGenerator
-} = require('@arction/xydata')
-
-
-// Create a XY Chart.
-const chart = lightningChart().ChartXY({
-    // theme: Themes.dark
-})
-    .setTitle('Heatmap using IntensityGrid')
+const { createWaterDropDataGenerator } = require("@arction/xydata");
 
 // Specify the resolution used for the heatmap.
-const resolutionX = 100
-const resolutionY = 200
+const resolutionX = 1000;
+const resolutionY = 1000;
+
+// Create a XY Chart.
+const chart = lightningChart()
+  .ChartXY({
+    // theme: Themes.darkGold
+  })
+  .setTitle(
+    `Heatmap Grid Series ${resolutionX}x${resolutionY} (${(
+      (resolutionX * resolutionY) /
+      1000000
+    ).toFixed(1)} million data points)`
+  )
+  .setPadding({ right: 40 });
 
 // Create LUT and FillStyle
 const palette = new LUT({
-    steps: [
-        { value: 0, color: ColorRGBA(255, 255, 0) },
-        { value: 30, color: ColorRGBA(255, 204, 0) },
-        { value: 45, color: ColorRGBA(255, 128, 0) },
-        { value: 60, color: ColorRGBA(255, 0, 0) },
-    ],
-    interpolate: false
-})
-
-// Add a Heatmap to the Chart. By default IntensityGrid Series Type is used.
-const heatmap = chart.addHeatmapSeries({
-    rows: resolutionX,
-    columns: resolutionY,
-    start: { x: 10, y: 10 },
-    end: { x: 90, y: 90 },
-    pixelate: false
-})
-    // Color Heatmap using previously created color look up table.
-    .setFillStyle(new PalettedFill({ lut: palette }))
+  units: "intensity",
+  steps: [
+    { value: 0, color: ColorRGBA(255, 255, 0) },
+    { value: 30, color: ColorRGBA(255, 204, 0) },
+    { value: 45, color: ColorRGBA(255, 128, 0) },
+    { value: 60, color: ColorRGBA(255, 0, 0) },
+  ],
+  interpolate: false,
+});
 
 // Generate heatmap data.
 createWaterDropDataGenerator()
-    .setRows( resolutionX )
-    .setColumns( resolutionY )
-    .generate()
-    .then( data => {
-        heatmap.invalidateValuesOnly( data )
-    } )
+  .setRows(resolutionX)
+  .setColumns(resolutionY)
+  .generate()
+  .then((data) => {
+    // Add a Heatmap to the Chart.
+    const heatmap = chart
+      .addHeatmapGridSeries({
+        columns: resolutionX,
+        rows: resolutionY,
+        start: { x: 0, y: 0 },
+        end: { x: resolutionX, y: resolutionY },
+        dataOrder: "columns",
+      })
+      // Color Heatmap using previously created color look up table.
+      .setFillStyle(new PalettedFill({ lut: palette }))
+      .setWireframeStyle(emptyLine)
+      .invalidateIntensityValues(data)
+      .setMouseInteractions(false);
 
-// Add LegendBox.
-const legend = chart.addLegendBox().add(chart)
+    // Add LegendBox.
+    const legend = chart.addLegendBox()
+      // Dispose example UI elements automatically if they take too much space. This is to avoid bad UI on mobile / etc. devices.
+      .setAutoDispose({
+        type: 'max-width',
+        maxWidth: 0.30,
+    })
+      .add(chart)
+  });

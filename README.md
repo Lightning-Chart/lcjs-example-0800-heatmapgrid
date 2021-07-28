@@ -19,90 +19,91 @@ The demo can be used as an example or a seed project. Local execution requires t
 
 ## Description
 
-This example shows a simple use-case scenario for grid-based Heatmaps.
+This example showcases simple usage of `HeatmapGridSeries`, a simple, yet incredibly series type.
 
-The data used for the heatmap is created using the WaterdropGenerator function in the example code.
-
-Heatmaps are a powerful tool for visualizing magnitude in two dimensions. This example focuses on the IntensityGrid-type Heatmap Series.
+`HeatmapGridSeries` visualizes three dimensional data (X, Y, color) of large quantities.
+It can easily handle data sets in million data points range even on low-end devices.
+With large amounts of RAM even **billions** of data points can be visualized!
 
 Heatmaps can be created in XY Charts:
 
 ```javascript
-// Add heatmap Series to a XY Chart
-chartXY.addHeatmapSeries( {
-    rows:       verticalResolution,
-    columns:    horizontalResolution,
-    start:      { x: 0, y: 0 },
-    end:        { x: 100, y: 100 },
-    pixelate:   false
-})
+// Add heatmap Grid Series to a XY Chart
+chartXY.addHeatmapGridSeries({
+  columns: horizontalResolution,
+  rows: verticalResolution,
+});
 ```
 
-# Heatmap Series options
-Let's open up the options a bit more:
+The data used for the heatmap is created using the WaterdropGenerator function in the example code.
 
-*rows*
-Rows determine the *vertical resolution*, or density of each cell vertically.
-*columns*
-Columns determine the *horizontal resolution*, or density of each cell horizontally.
-*start*
-The position from where the heatmap will be rendered from.
-*end*
-The position to where the heatmap will be rendered to.
-*pixelate*
-If true, each cell will be rendered as-is; this will create a pixelated look for the heatmap.
-If false, the cells will be interpolated to give the heatmap a cleaner look.
+# Heatmap Grid Series options
 
-The *rows* and *columns* control the amount of data present in the heatmap; think of them as *cells* in a *matrix*.
+When `HeatmapGridSeries` is created, there are minimum of two properties that have to be specified:
 
-The *start* and *end* position determine the *size* of the heatmap in the XY Chart's scale.
+`columns`: amount of data values along X dimension.
 
-There are additional optional options available;
-*type*
-Which type of IntensitySeries should be used for the heatmap.
-*xAxis*
-The Horizontal Axis the heatmap should be attached to.
-*yAxis*
-The Vertical Axis the heatmap should be attached to.
+`rows`: amount of data values along Y dimension.
 
-# Heatmap series usage
-Now that we have the heatmap specified, it's time to fill it with data.
+Configuration of these two properties is enough for a fully functioning heatmap grid series.
 
-```javascript
-// Use invalidateValuesOnly to add data to the series and invalidate it.
-// The data should be given as a matrix of numbers.
-heatmap.invalidateValuesOnly( Matrix<number> )
-// Optionally, it's also possible to go through each cell in the heatmap
-// and fill the data using a callback
-heatmap.invalidateValuesOnly( UpdateValueCallBack )
-// Set a fillStyle to use for coloring the heatmap.
-// Using a combination of PalettedFill and LUT allows coloring each cell
-// depending on the data added.
-heatmap.setFillStyle( new PalettedFill( { LUT } )
+The following optional properties can be used for tweaking heatmap behavior for exact application purposes:
+
+`start`: Axis coordinate where heatmap grid begins.
+
+`end`: Axis coordinate where heatmap grid ends.
+
+`step`: Alternate syntax, supplying a `step` value will result in automatic calculation of `end` based on `columns` / `rows` amount.
+
+`dataOrder`: By default incoming intensity data is treated as _list of columns_. This can be flipped by selecting `dataOrder: 'rows'`.
+
+# Heatmap Grid Series data input
+
+The data set of `HeatmapGridSeries` is defined as a _number matrix_, for example:
+
+```js
+// Example syntax of 3x5 number matrix.
+[
+  [0, 1, 0, 1, 0],
+  [1, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0],
+];
 ```
 
-It is also possible to instead assign specific colors to each cell in the heatmap.
-```javascript
-// Use invalidateColorsOnly to add color to the series and invalidate it.
-// The colors should be given as a matrix of colors.
-heatmap.invalidateColorsOnly( Matrix<Color> )
-// Optionally, a callback can be used to change color of each cell.
-heatmap.invalidateColorsOnly( UpdateColorCallback )
-// Set the fillStyle of the heatmap to IndividualPointFill, so each cell
-// can be properly colored.
-heatmap.setFillStyle( new IndividualPointFill() )
+The data set is specified with `invalidateIntensityValues` method. There are two overrides for this method.
+
+```js
+// Example syntax, invalidate intensity values override #1, specify data from beginning of heatmap.
+heatmap.invalidateIntensityValues([
+  // dataOrder: 'columns', columns: 3, rows: 5
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0],
+]);
+```
+
+```js
+// Example syntax, invalidate intensity values override #2, specify data from arbitrary offset.
+heatmap.invalidateIntensityValues({
+  iColumn: 10,
+  iRow: 0,
+  values: [
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0],
+  ],
+});
 ```
 
 
 ## API Links
 
 * [XY cartesian chart]
-* [Intensity Grid Series]
+* [Heatmap Grid Series Intensity]
 * [Paletted Fill]
-* [Individual Point Fill]
-* [Matrix]
 * [LUT]
-* [UpdateColorCallback]
+* [Empty line style]
+* [Legend Box]
 
 
 ## Support
@@ -126,11 +127,10 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © Arction Ltd 2009-2020. All rights reserved.
 
 
-[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/chartxy.html
-[Intensity Grid Series]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/intensitygridseries.html
-[Paletted Fill]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/palettedfill.html
-[Individual Point Fill]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/individualpointfill.html
-[Matrix]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/globals.html#matrix
-[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/classes/lut.html
-[UpdateColorCallback]: https://www.arction.com/lightningchart-js-api-documentation/v3.0.1/globals.html#updatecolorcallback
+[XY cartesian chart]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/chartxy.html
+[Heatmap Grid Series Intensity]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/
+[Paletted Fill]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/palettedfill.html
+[LUT]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/lut.html
+[Empty line style]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/globals.html#emptyline
+[Legend Box]: https://www.arction.com/lightningchart-js-api-documentation/v3.1.0/classes/chartxy.html#addlegendbox
 
