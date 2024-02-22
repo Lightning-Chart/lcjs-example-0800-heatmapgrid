@@ -27,7 +27,14 @@ const chart = lightningChart()
 const theme = chart.getTheme()
 const palette = new LUT({
     units: 'intensity',
-    steps: regularColorSteps(0, 60, theme.examples.intensityColorPalette),
+    percentageValues: true,
+    steps: regularColorSteps(
+        // first color at min value
+        0,
+        // last color at 70% between min and max value
+        0.7,
+        theme.examples.intensityColorPalette,
+    ),
     interpolate: false,
 })
 
