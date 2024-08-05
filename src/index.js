@@ -2,12 +2,12 @@
  * LightningChartJS example that showcases a simple XY line series.
  */
 // Import LightningChartJS
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
 const { lightningChart, PalettedFill, LUT, regularColorSteps, emptyLine, Themes } = lcjs
 
-const { createWaterDropDataGenerator } = require('@arction/xydata')
+const { createWaterDropDataGenerator } = require('@lightningchart/xydata')
 
 // Specify the resolution used for the heatmap.
 const resolutionX = 1000
@@ -28,7 +28,7 @@ const chart = lightningChart({
 // Create LUT and FillStyle
 const theme = chart.getTheme()
 const palette = new LUT({
-    units: 'intensity',
+    units: '°C',
     percentageValues: true,
     steps: regularColorSteps(
         // first color at min value
@@ -51,10 +51,10 @@ createWaterDropDataGenerator()
             .addHeatmapGridSeries({
                 columns: resolutionX,
                 rows: resolutionY,
-                start: { x: 0, y: 0 },
-                end: { x: resolutionX, y: resolutionY },
                 dataOrder: 'columns',
             })
+            .setStart({ x: 0, y: 0 })
+            .setEnd({ x: resolutionX, y: resolutionY })
             // Color Heatmap using previously created color look up table.
             .setFillStyle(new PalettedFill({ lut: palette }))
             .setWireframeStyle(emptyLine)
