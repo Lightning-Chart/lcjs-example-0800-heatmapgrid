@@ -23,7 +23,6 @@ const chart = lightningChart({
     .setTitle(
         `Heatmap Grid Series ${resolutionX}x${resolutionY} (${((resolutionX * resolutionY) / 1000000).toFixed(1)} million data points)`,
     )
-    .setPadding({ right: 40 })
 
 // Create LUT and FillStyle
 const theme = chart.getTheme()
