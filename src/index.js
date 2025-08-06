@@ -58,14 +58,4 @@ createWaterDropDataGenerator()
             .setFillStyle(new PalettedFill({ lut: palette }))
             .setWireframeStyle(emptyLine)
             .invalidateIntensityValues(data)
-
-        // Add LegendBox.
-        const legend = chart
-            .addLegendBox()
-            // Dispose example UI elements automatically if they take too much space. This is to avoid bad UI on mobile / etc. devices.
-            .setAutoDispose({
-                type: 'max-width',
-                maxWidth: 0.3,
-            })
-            .add(chart)
     })
