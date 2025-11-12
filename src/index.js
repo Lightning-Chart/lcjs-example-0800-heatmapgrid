@@ -5,7 +5,7 @@
 const lcjs = require('@lightningchart/lcjs')
 
 // Extract required parts from LightningChartJS.
-const { lightningChart, PalettedFill, LUT, regularColorSteps, emptyLine, Themes } = lcjs
+const { lightningChart, PalettedFill, LUT, regularColorSteps, emptyLine, contoursFromLUT, Themes } = lcjs
 
 const { createWaterDropDataGenerator } = require('@lightningchart/xydata')
 
@@ -28,14 +28,7 @@ const chart = lightningChart({
 const theme = chart.getTheme()
 const palette = new LUT({
     units: '°C',
-    percentageValues: true,
-    steps: regularColorSteps(
-        // first color at min value
-        0,
-        // last color at 70% between min and max value
-        0.7,
-        theme.examples.intensityColorPalette,
-    ),
+    steps: regularColorSteps(0, 75, theme.examples.intensityColorPalette),
     interpolate: false,
 })
 
@@ -57,5 +50,6 @@ createWaterDropDataGenerator()
             // Color Heatmap using previously created color look up table.
             .setFillStyle(new PalettedFill({ lut: palette }))
             .setWireframeStyle(emptyLine)
+            .setContours(contoursFromLUT(palette))
             .invalidateIntensityValues(data)
     })
