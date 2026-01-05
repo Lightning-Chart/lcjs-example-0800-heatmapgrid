@@ -19,7 +19,7 @@ The demo can be used as an example or a seed project. Local execution requires t
 
 ## Description
 
-This example showcases simple usage of `HeatmapGridSeries`, a simple, yet incredibly series type.
+This example showcases simple usage of `HeatmapGridSeries`, a simple, yet incredible series type.
 
 `HeatmapGridSeries` visualizes three dimensional data (X, Y, color) of large quantities.
 It can easily handle data sets in million data points range even on low-end devices.
@@ -95,6 +95,24 @@ heatmap.invalidateIntensityValues({
 })
 ```
 
+# Heatmap Grid Series Contours
+
+The contour lines of `HeatmapGridSeries` can be enabled with `setContours` method. 
+```js
+ // Example syntax
+ heatmap.setContours({
+    levels: [
+        { value: 0 },
+        { value: 20 },
+        { value: 50 },
+        {
+            value: 75,
+            label: 'Max'
+        }
+    ]
+})
+```
+
 
 ## API Links
 
@@ -103,6 +121,7 @@ heatmap.invalidateIntensityValues({
 * [Paletted Fill]
 * [LUT]
 * [Empty line style]
+* [Contour lines]
 
 
 ## Support
@@ -131,4 +150,5 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 [Paletted Fill]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/PalettedFill.html
 [LUT]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/LUT.html
 [Empty line style]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/variables/emptyLine.html
+[Contour lines]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/HeatmapGridSeriesIntensityValues.html#setContours
 
