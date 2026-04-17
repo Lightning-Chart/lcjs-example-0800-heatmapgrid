@@ -142,13 +142,13 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 [3]: https://stackoverflow.com/questions/tagged/lightningchart
 [4]: https://lightningchart.com/support-services/
 
-© LightningChart Ltd 2009-2025. All rights reserved.
+© LightningChart Ltd 2009-2026. All rights reserved.
 
 
-[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/ChartXY.html
-[Heatmap Grid Series Intensity]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/HeatmapGridSeriesIntensityValues.html
-[Paletted Fill]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/PalettedFill.html
-[LUT]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/LUT.html
-[Empty line style]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/variables/emptyLine.html
-[Contour lines]: https://lightningchart.com/js-charts/api-documentation/v8.1.0/classes/HeatmapGridSeriesIntensityValues.html#setContours
+[XY cartesian chart]: https://lightningchart.com/js-charts/api-documentation/v8.2.0/classes/ChartXY.html
+[Heatmap Grid Series Intensity]: https://lightningchart.com/js-charts/api-documentation/v8.2.0/classes/HeatmapGridSeriesIntensityValues.html
+[Paletted Fill]: https://lightningchart.com/js-charts/api-documentation/v8.2.0/classes/PalettedFill.html
+[LUT]: https://lightningchart.com/js-charts/api-documentation/v8.2.0/classes/LUT.html
+[Empty line style]: https://lightningchart.com/js-charts/api-documentation/v8.2.0/variables/emptyLine.html
+[Contour lines]: https://lightningchart.com/js-charts/api-documentation/v8.2.0/classes/HeatmapGridSeriesIntensityValues.html#setContours
 
